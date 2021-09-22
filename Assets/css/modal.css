@@ -1,0 +1,38 @@
+#modalBox {
+    position: relative;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 35%;
+    top: 5vw;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 350px;
+    padding: 40px 60px;
+    text-align: left;
+    line-height: 2.5rem;
+    background-color: #f9fbfd;
+    text-align: center;
+}
+#closeModal {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 200%;
+}
+#closeModal:hover {
+    color: darkslategrey;
+    cursor: grabbing;
+}
+
+h3 {
+    margin: 0;
+    text-align: center;
+}
+#checkboxes {
+     text-align: left;
+}
+
+#lengthInput {
+    width: 100px
+}

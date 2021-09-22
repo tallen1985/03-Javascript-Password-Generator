@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
     <link rel="stylesheet" href="./Assets/css/style.css" />
+    <link rel="stylesheet" href="./Assets/css/modal.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -28,7 +29,35 @@
           <button id="generate" class="btn">Generate Password</button>
         </div>
       </div>
-    </div>
+    
+
+    <section id="modalBox">
+      <span id="closeModal">
+        X
+      </span>
+      <section name="requirementsBox">
+      <h2>Password Requirements</h2>
+        <label for="lengthInput">Desired Length: </label>
+        <input id="lengthInput" type="number" name="lengthInput" min="8" max="128" required>
+        <div id="checkboxes">
+          <h3>Characters to Include</h3>
+          <label for="lowercaseCheck">Lowercase: </label>
+          <input type="checkbox" class="CB" name="lowercaseCheck" id="lowercaseCheck">
+          <br>
+          <label for="lowercaseCheck">Uppercase: </label>
+          <input type="checkbox" class="CB" name="uppercaseCheck" id="uppercaseCheck">
+          <br>
+          <label for="lowercaseCheck">Special Characters: </label>
+          <input type="checkbox" class="CB" name="specialCharCheck" id="specialCharCheck">
+          <br>
+          <label for="lowercaseCheck">Numerical: </label>
+          <input type="checkbox" class="CB" name="numericalCheck" id="numericalCheck">
+        </div>
+          <button id="submitButton" class="btn">Generate Password</button>
+       
+      </section>
+    </section>
+  </div>
     <script src="./Assets/js/script.js"></script>
   </body>
 </html>
