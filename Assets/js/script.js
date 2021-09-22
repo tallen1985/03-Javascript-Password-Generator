@@ -15,8 +15,9 @@ closeModal.addEventListener('click', function() {
 generateBtn.addEventListener('click', function() {
   modalBox.style.display = "block";
 });
-submitButton.addEventListener('click', function() {
+submitButton.addEventListener('click', function(e) {
   validateData();
+  e.preventDefault();
 });
 
 function validateData() {
@@ -30,10 +31,10 @@ function validateData() {
       anythingChecked = true;
     }
   }
-  if (length && anythingChecked) {
+  if (length >= 8 && length <= 128 && anythingChecked) {
     createPassword();
   } else {
-    alert('please check at least one box and specify length');
+    alert('please check at least one box and specify a length between 8 and 128');
   }
 }
 
@@ -55,9 +56,9 @@ function generateRequirements() {
 
 // Generate possible Values from user requirements
 function generateValues(requirements) {
-  let lowercaseValues = ["a",'b'];
-  let uppercaseValues = ["A", "B"];
-  let specialChar = ["!","@",];
+  let lowercaseValues = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  let uppercaseValues = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  let specialChar = ["!","@","#","$","%","^","&","*"];
   let possibleValues = [];
 
  if (requirements.lowercase) {
@@ -83,8 +84,9 @@ createPassword = () => {
 let requirements = generateRequirements();
 let possibleValues = generateValues(requirements);
 
-for (let x = 0; x <= requirements.length; x++) {
-    let randNum = Math.round(Math.random() * possibleValues.length);
+for (let x = 0; x < requirements.length; x++) {
+    let randNum = Math.round(Math.random() * (possibleValues.length - 1));
+    console.log(randNum);
     password += possibleValues[randNum];
 };
 
