@@ -19,8 +19,10 @@ submitButton.addEventListener('click', function(event) {
   event.preventDefault();
 });
 
+// Validation: Check to ensure user chose correct length and at
+  // least one set of values, if correct populate requirements object.
 function validateData() {
-  const length = document.getElementById('lengthInput').value;
+  const lengthInput = document.getElementById('lengthInput').value;
   const checkBox = document.getElementsByClassName('CB');
   let anythingChecked = false;
   
@@ -29,27 +31,19 @@ function validateData() {
       anythingChecked = true;
     }
   }
-  if (length >= 8 && length <= 128 && anythingChecked) {
-    createPassword();
-  } else {
-    alert('please check at least one box and specify a length between 8 and 128');
-  }
-}
-
-// Get user input and generate object with requirements.
-function generateRequirements() {
-  const length = document.getElementById('lengthInput')
-  const checkBox = document.getElementsByClassName('CB');
-
-  const requirements = {
-    length: length.value,
+  if (lengthInput >= 8 && length <= 128 && anythingChecked) {
+    const requirements = {
+    length: lengthInput,
     lowercase: checkBox[0].checked,
     uppercase: checkBox[1].checked,
     specialChar: checkBox[2].checked,
     numeric: checkBox[3].checked
-    }
+    };
 
-  return requirements;
+    createPassword(requirements);
+  } else {
+    alert('Please choose a length between 8 and 128 Characters and specify Possible Values');
+  }
 }
 
 // Generate possible Values from user requirements
@@ -79,11 +73,9 @@ function generateValues(requirements) {
 
 // Get requirements from user, validate requirements, create
 //    possible values and generate password.
-createPassword = () => {
+function createPassword(requirements) {
   let password = "";
-  const requirements = generateRequirements();
   const possibleValues = generateValues(requirements);
-
   for (let x = 0; x < requirements.length; x++) {
       const randNum = Math.round(Math.random() * (possibleValues.length - 1));
       password += possibleValues[randNum];
