@@ -38,9 +38,11 @@
       <form name="requirementsBox">
       <h2>Password Requirements</h2>
         <label for="lengthInput">Desired Length: </label>
-        <input id="lengthInput" type="number" name="lengthInput" min="8" max="128" required>
+        <input id="lengthInput" type="number" name="lengthInput">
+        <p>Between 8 and 128 characters</p>
         <div id="checkboxes">
           <h3>Characters to Include</h3>
+          <p>Choose at least 1</p>
           <label for="lowercaseCheck">Lowercase: </label>
           <input type="checkbox" class="CB" name="lowercaseCheck" id="lowercaseCheck">
           <br>

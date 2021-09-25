@@ -1,11 +1,10 @@
 
 // Assignment Code
-var generateBtn = document.getElementById("generate");
-var modalBox = document.getElementById('modalBox');
-var closeModal = document.getElementById('closeModal');
-var submitButton = document.getElementById('submitButton');
-var passwordText = document.querySelector("#password");
-var password = "";
+const generateBtn = document.getElementById("generate");
+const modalBox = document.getElementById('modalBox');
+const closeModal = document.getElementById('closeModal');
+const submitButton = document.getElementById('submitButton');
+const passwordText = document.querySelector("#password");
   
 
 // Add event listener to generate button
@@ -15,19 +14,18 @@ closeModal.addEventListener('click', function() {
 generateBtn.addEventListener('click', function() {
   modalBox.style.display = "block";
 });
-submitButton.addEventListener('click', function(e) {
+submitButton.addEventListener('click', function(event) {
   validateData();
-  e.preventDefault();
+  event.preventDefault();
 });
 
 function validateData() {
-  let length = document.getElementById('lengthInput').value;
-  let checkBox = document.getElementsByClassName('CB');
+  const length = document.getElementById('lengthInput').value;
+  const checkBox = document.getElementsByClassName('CB');
   let anythingChecked = false;
   
   for (let x = 0; x <= 3; x++){
     if (checkBox[x].checked) {
-      console.log(checkBox[x]);
       anythingChecked = true;
     }
   }
@@ -40,10 +38,10 @@ function validateData() {
 
 // Get user input and generate object with requirements.
 function generateRequirements() {
-  let length = document.getElementById('lengthInput')
-  let checkBox = document.getElementsByClassName('CB');
+  const length = document.getElementById('lengthInput')
+  const checkBox = document.getElementsByClassName('CB');
 
-  let requirements = {
+  const requirements = {
     length: length.value,
     lowercase: checkBox[0].checked,
     uppercase: checkBox[1].checked,
@@ -56,41 +54,41 @@ function generateRequirements() {
 
 // Generate possible Values from user requirements
 function generateValues(requirements) {
-  let lowercaseValues = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  let uppercaseValues = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-  let specialChar = ["!","@","#","$","%","^","&","*"];
-  let possibleValues = [];
+  const lowercaseValues = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  const specialChar = [" ", "!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "{", "|", "}", "~"];
+  const possibleValues = [];
 
  if (requirements.lowercase) {
-   possibleValues.push(...lowercaseValues)
- }
+   possibleValues.push(...lowercaseValues);
+ };
  if (requirements.uppercase) {
-   possibleValues.push(...uppercaseValues)
- }
+   for (let x = 0; x < lowercaseValues.length; x++) {
+     possibleValues.push(lowercaseValues[x].toUpperCase())
+   }
+ };
  if (requirements.specialChar) {
-   possibleValues.push(...specialChar)
- }
+   possibleValues.push(...specialChar);
+ };
  if (requirements.numeric) {
    for (let x = 0; x <= 9; x++) {
       possibleValues.push(x);
     }
- }
+ };
   return possibleValues;
-}
+};
 
 // Get requirements from user, validate requirements, create
 //    possible values and generate password.
 createPassword = () => {
-let requirements = generateRequirements();
-let possibleValues = generateValues(requirements);
+  let password = "";
+  const requirements = generateRequirements();
+  const possibleValues = generateValues(requirements);
 
-for (let x = 0; x < requirements.length; x++) {
-    let randNum = Math.round(Math.random() * (possibleValues.length - 1));
-    console.log(randNum);
-    password += possibleValues[randNum];
-};
+  for (let x = 0; x < requirements.length; x++) {
+      const randNum = Math.round(Math.random() * (possibleValues.length - 1));
+      password += possibleValues[randNum];
+  };
 
-passwordText.value = password;
-modalBox.style.display = 'none';
-console.log(password);
+  passwordText.value = password;
+  modalBox.style.display = 'none';
 };
